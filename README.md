@@ -1,6 +1,4 @@
 # cfs-rcc-demo
-Demo for building and running cFS on a LEON based system using the RCC compiler
-cFS RCC LEON demo
 
 This repository contains code and instructions to build the RTEMS Kernel Image (RKI) and core Flight System (cFS) for the LEON3 and LEON4 using the RCC 1.3.1 toolchain and BSPs provided by Gaisler.
 
@@ -8,6 +6,7 @@ The RCC 1.3.1 toolchain provides the GCC Sparc/LEON cross compiler and RTEMS 5.1
 
 The RCC 1.3.1 toolchain for linux is available here:
 https://www.gaisler.com/index.php/downloads/compilers
+
 The specific compiler I used is here:
 https://www.gaisler.com/anonftp/rcc/bin/linux/sparc-rtems-5-gcc-10.2.0-1.3.1-linux.txz
 
@@ -19,14 +18,19 @@ $HOME/Tools/rcc-1.3.1-gcc
 ```
 
 For a shared workstation, it often makes sense to install the toolchain in the /opt directory:
+```
 /opt/rcc-1.3.1-gcc
+```
 
 After you install the toolchain, make sure you set the path to the bin file:
 For my setup, I put the following in my ~/.profile file (Ubuntu Linux):
+
+```
 # set RCC 1.3.1 PATH
 if [ -d "$HOME/Tools/rcc-1.3.1-gcc/bin" ] ; then
     PATH="$HOME/Tools/rcc-1.3.1-gcc/bin:$PATH"
 fi
+```
 
 There are two places in this repository that care about where the tools are installed:
 1. RTEMS Kernel Image (rki2) directory. The file is rki2/build/rtems-paths.mak
