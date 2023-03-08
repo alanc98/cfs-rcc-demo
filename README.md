@@ -2,12 +2,19 @@
 
 This repository contains code and instructions to build the RTEMS Kernel Image (RKI) and core Flight System (cFS) for the LEON3 and LEON4 using the RCC 1.3.1 toolchain and BSPs provided by Gaisler.
 
+This repository uses submodules, so before starting to try to build anything, you need to initialize and update the submodules:
+```
+$ git submodule update --init --recursive
+```
+
 The RCC 1.3.1 toolchain provides the GCC Sparc/LEON cross compiler and RTEMS 5.1 compiled for all of the Gaisler Sparc/LEON targets such as LEON3 and LEON4 (GR740)
 
 The RCC 1.3.1 toolchain for linux is available here:
+
 https://www.gaisler.com/index.php/downloads/compilers
 
 The specific compiler I used is here:
+
 https://www.gaisler.com/anonftp/rcc/bin/linux/sparc-rtems-5-gcc-10.2.0-1.3.1-linux.txz
 
 ## Toolchain installation:
@@ -57,10 +64,10 @@ To build for the leon3, leave it as is above.
 Once you have the compiler installed, the path set to your compiler in your linux .profile, and the BSP selected, just type:
 
 ```
-make
+rki2/build/leon-rcc$ make
 ```
 
-The RKI project will be compiled and it will result in rki.elf, which is an executable that can be loaded to the target and run.
+The RKI project will be compiled and it will result in rki.elf, which is an executable that can be loaded to the target and run. The rki.elf file can also be copied to the renode or qemu directories to run on a simulator. The simulators will only run the rki compiled for the leon3.
 
 When you run this project, you will see the following on the UART:
 RTEMS Kernel Image Booting
