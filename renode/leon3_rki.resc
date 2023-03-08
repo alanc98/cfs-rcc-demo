@@ -1,0 +1,25 @@
+:name: Leon3 rtems demo
+:description: This script runs the rtems shell demo on Leon3
+
+using sysbus
+$name?="Leon3"
+mach create $name
+
+machine LoadPlatformDescription @platforms/boards/leon3.repl
+
+path add $ORIGIN
+
+$prom?=@prom.bin
+$bin?=@rki.elf
+
+showAnalyzer sysbus.uart
+
+macro reset
+"""
+    sysbus LoadBinary $prom 0x0
+    sysbus LoadELF $bin
+
+    cpu PC 0
+"""
+
+runMacro $reset
